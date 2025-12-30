@@ -1,0 +1,21 @@
+services:
+  langgraph:
+    container_name: langgraph
+    build: . 
+    ports:
+      - "8000:8000"
+    network_mode: "host"
+    volumes:
+      - ./:/app
+    
+    environment:
+      # Gemini
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+  
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
